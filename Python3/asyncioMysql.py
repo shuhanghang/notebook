@@ -1,6 +1,7 @@
 #! /usr/bin/env python3.7.4
 #  使用协程异步读写mysql数据
 #  使用日志、异常追踪、协程模块
+#  创建数据库、表、存储过程记录在asyncioMysql_SQL中
 
 import asyncio
 import logging
