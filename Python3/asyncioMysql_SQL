@@ -1,0 +1,24 @@
+-- 创建测试用表
+USE testData;
+CREATE TABLE testTable(
+id INT(10) NOT NULL AUTO_INCREMENT COMMENT 'UID',
+brand VARCHAR(20) NOT NULL COMMENT '商品品牌',
+price FLOAT NOT NULL COMMENT '商品价格',
+PRIMARY KEY(id)
+) ENGINE=INNODB AUTO_INCREMENT = 1 DEFAULT CHARSET=UTF8 COMMENT '商品表';
+
+-- 创建数据表插入存储过程
+delimiter //
+CREATE PROCEDURE pro_create(IN pro_brand VARCHAR(10),IN pro_price FLOAT)
+BEGIN
+INSERT INTO testData.testTable (id,brand,price) VALUES(DEFAULT,pro_brand,pro_price);
+END
+//
+
+-- 创建数据表查询存储过程
+delimiter //
+CREATE PROCEDURE pro_query()
+BEGIN
+SELECT * FROM testData.testTable WHERE brand='Alinas'  limit 1;
+END
+//
