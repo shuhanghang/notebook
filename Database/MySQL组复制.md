@@ -1,6 +1,10 @@
 # MySQL组复制
 
+<<<<<<< HEAD
 ## 一. 什么是MGR
+=======
+## 1. 什么是MGR
+>>>>>>> 5dd222e6cad29bfd11651589cd9b9b946c4db314
 
 MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形式推出的主从复制高可用技术，它基于原生的主从复制，将各节点归入到一个组中，通过组内节点的通信协商(组通信协议基于Paxos算法)，实现数据的强一致性，具有弹性复制、高可用、主从替换、自动加组等等功能。    
 
@@ -14,7 +18,11 @@ MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形�
 
 
 
+<<<<<<< HEAD
 ## 二. 组复制模式
+=======
+## 2. 组复制模式
+>>>>>>> 5dd222e6cad29bfd11651589cd9b9b946c4db314
 
 MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作模式，它们都能保证MySQL的高可用。以下是两种工作模式的特性简介：
 
@@ -27,7 +35,11 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 
 
+<<<<<<< HEAD
 ## 三. 配置单主模式的组复制
+=======
+## 3. 配置单主模式的组复制
+>>>>>>> 5dd222e6cad29bfd11651589cd9b9b946c4db314
 
 ### 3.1 实验环境
 
@@ -41,7 +53,7 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 
 
-### 3.2  配置第一个节点d1.mgr.com
+### 3.2 配置第一个节点d1.mgr.com
 
 #### 3.2.1 创建复制用户
 
@@ -116,7 +128,7 @@ mysql> select * from performance_schema.replication_group_members;
 
 
 
-###  3.3配置第二个节点d2.mgr.com
+###  3.3 配置第二个节点d2.mgr.com
 
 #### 3.3.1 创建复制用户
 
@@ -250,7 +262,11 @@ mysql> select * from performance_schema.replication_group_members;
 
 
 
+<<<<<<< HEAD
 ## 四. 参考
+=======
+## 4. 参考
+>>>>>>> 5dd222e6cad29bfd11651589cd9b9b946c4db314
 
 【1】[MySQL高可用之组复制技术(2)：配置单主模型的组复制](https://www.cnblogs.com/f-ck-need-u/p/9203154.html)  
 
