@@ -1,10 +1,10 @@
 # MySQL组复制
 
-## 1.什么是MGR
+## 1. 什么是MGR
 
 MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形式推出的主从复制高可用技术，它基于原生的主从复制，将各节点归入到一个组中，通过组内节点的通信协商(组通信协议基于Paxos算法)，实现数据的强一致性，具有弹性复制、高可用、主从替换、自动加组等等功能。    
 
-### 1.1MySQL组复制协议
+### 1.1 MySQL组复制协议
 
 
 
@@ -16,7 +16,7 @@ MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形�
 
 
 
-## 2.组复制模式
+## 2. 组复制模式
 
 MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作模式，它们都能保证MySQL的高可用。以下是两种工作模式的特性简介：
 
@@ -29,7 +29,7 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 
 
-## 3.配置单主模式的组复制
+## 3. 配置单主模式的组复制
 
 ### 3.1 实验环境
 
@@ -43,7 +43,7 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 
 
-### 3.2  配置第一个节点d1.mgr.com
+### 3.2 配置第一个节点d1.mgr.com
 
 #### 3.2.1 创建复制用户
 
@@ -54,7 +54,7 @@ mysql> create user repl@'%' identified by 'P@ssword1!';
 mysql> grant replication slave on *.* to repl@'%';
 ```
 
-#### 3.2.2修改配置文件
+#### 3.2.2 修改配置文件
 
 ` vim /etc/my.cnf`
 
@@ -91,7 +91,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 
 生成通道的relay log文件，`group_replication_recovery`通道的relay log用于新节点加入组时，**当新节点联系上donor后，会从donor处以异步复制的方式将其binlog复制到这个通道的relay log中，新节点将从这个recovery通道的relay log中恢复数据。**
 
-#### 3.2.4安装插件并启用组复制
+#### 3.2.4 安装插件并启用组复制
 
 ```mysql
 mysql> install plugin group_replication soname 'group_replication.so';
@@ -110,7 +110,7 @@ mysql> set @@global.group_replication_bootstrap_group=off;
 
 是为了避免下次重启组复制插件功能时再次引导创建一个组，`group_replication_bootstrap_group`变量临时启用。当启动组复制功能后，将生成另一个通道`group_replication_applier`的相关文件（类似中继日志），并由applier线程（类似sql线程）重放到数据库。
 
-#### 3.2.5查看组复制成员情况
+#### 3.2.5 查看组复制成员情况
 
 ```mysql
 mysql> select * from performance_schema.replication_group_members;
@@ -118,7 +118,7 @@ mysql> select * from performance_schema.replication_group_members;
 
 
 
-###  3.3配置第二个节点d2.mgr.com
+###  3.3 配置第二个节点d2.mgr.com
 
 #### 3.3.1 创建复制用户
 
@@ -129,7 +129,7 @@ mysql> create user repl@'%' identified by 'P@ssword1!';
 mysql> grant replication slave on *.* to repl@'%';
 ```
 
-#### 3.3.2修改配置文件
+#### 3.3.2 修改配置文件
 
 ` vim /etc/my.cnf`
 
@@ -165,7 +165,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 
 ```
 
-#### 3.3.4安装插件并加入到复制组
+#### 3.3.4 安装插件并加入到复制组
 
 ```mysql
 mysql> install plugin group_replication soname 'group_replication.so';
@@ -175,7 +175,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 mysql> start group_replication;
 ```
 
-#### 3.3.5查看组复制成员情况
+#### 3.3.5 查看组复制成员情况
 
 ```mysql
 mysql> select * from performance_schema.replication_group_members;
@@ -183,7 +183,7 @@ mysql> select * from performance_schema.replication_group_members;
 
 
 
-### 3.4添加第三个节点d3.mgr.com
+### 3.4 添加第三个节点d3.mgr.com
 
 #### 3.4.1 创建复制用户
 
@@ -194,7 +194,7 @@ mysql> create user repl@'%' identified by 'P@ssword1!';
 mysql> grant replication slave on *.* to repl@'%';
 ```
 
-#### 3.4.2修改配置文件
+#### 3.4.2 修改配置文件
 
 ```shell
 #### Group Replication d3.mgr.com ####
@@ -232,7 +232,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 
 `systemctl restart mysqld`
 
-#### 3.4.4安装插件并加入到复制组
+#### 3.4.4 安装插件并加入到复制组
 
 ```mysql
 mysql> install plugin group_replication soname 'group_replication.so';
@@ -242,7 +242,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 mysql> start group_replication;
 ```
 
-#### 3.4.5查看组复制成员情况
+#### 3.4.5 查看组复制成员情况
 
 ```mysql
 mysql> select * from performance_schema.replication_group_members;
@@ -252,7 +252,7 @@ mysql> select * from performance_schema.replication_group_members;
 
 
 
-## 4.参考
+## 4. 参考
 
 【1】[MySQL高可用之组复制技术(2)：配置单主模型的组复制](https://www.cnblogs.com/f-ck-need-u/p/9203154.html)  
 
