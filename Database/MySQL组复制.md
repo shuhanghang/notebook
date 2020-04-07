@@ -59,7 +59,7 @@ mysql> grant replication slave on *.* to repl@'%';
 ` vim /etc/my.cnf`
 
 ```shell
-server-id=10                      # 必须
+server-id=10                       # 必须
 gtid_mode=on                       # 必须，开启GTID模式
 enforce_gtid_consistency=on        # 必须，不允许事务违背GTID的一致性
 binlog_format=row                  # 必须，以行方式记录
@@ -71,10 +71,10 @@ sync-binlog=1                      # 建议，事务同步达到binlog
 group_replication_recovery_get_public_key=1
 
 transaction_write_set_extraction=XXHASH64         # 必须，事务写入算法
-loose-group_replication_group_name="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" #必须，uuidgen
-loose-group_replication_start_on_boot=off        # 建议，关闭启动自开启复制
-loose-group_replication_local_address="d1.mgr.com:20001"   # 必须，下一行也必须
-loose-group_replication_group_seeds="d1.mgr.com:20001,d2.mgr.com:20002,d3.mgr.com:20003"
+loose-group_replication_group_name="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" #必须，或使用uuidgen命令生成
+loose-group_replication_start_on_boot=off         # 建议，关闭启动自开启复制
+loose-group_replication_local_address="d1.mgr.com:20001"   # 必须，组复制本机地址及端口
+loose-group_replication_group_seeds="d1.mgr.com:20001,d2.mgr.com:20002,d3.mgr.com:20003" # 必须，组复制种子地址及端口
 loose-group_replication_ip_whitelist="172.16.10.0/24"	#建议，加组白名单
 ```
 
