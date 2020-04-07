@@ -226,10 +226,6 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 
 ```
 
-重启服务
-
-`systemctl restart mysqld`
-
 #### 3.4.4 安装插件并加入到复制组
 
 ```mysql
