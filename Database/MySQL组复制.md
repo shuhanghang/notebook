@@ -6,7 +6,7 @@ MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形�
 
 ### 1.1 MySQL组复制协议
 
-![Replication Protocol](https://dev.mysql.com/doc/refman/8.0/en/images/gr-replication-diagram.png)
+<img src="https://dev.mysql.com/doc/refman/8.0/en/images/gr-replication-diagram.png" alt="Replication Protocol" style="zoom:50%;" />
 
 这3个节点互相通信，每当有读写事件发生，都会向其他节点传播该事件，经过冲突检测后写入到binglog日志然后提交。
 
