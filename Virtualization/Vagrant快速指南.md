@@ -1,9 +1,3 @@
----
-categories: 虚拟化
-date: 2020-1-1 16:00:00
-toc: true
----
-
 # Vagrant  快速指南
 
 
