@@ -1,9 +1,3 @@
----
-categories: 数据库
-date: 2020-4-8 11:00:00
-toc: true
----
-
 # MySQL组复制
 
 ## 一. 什么是MGR
@@ -41,7 +35,7 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 ### 2.1 实验环境
 
-实验前请在hosts文件中设置好解析，或者局域网内搭建Dns服务器（推荐docker搭建Dnsmasq）。当然也可以不设置解析，直接在my.cnf文件中使用IP地址即可。
+实验前请在hosts文件中设置好解析，或者局域网内搭建DNS服务器（推荐docker搭建[dnsmasq](https://hub.docker.com/r/jpillora/dnsmasq)）。当然也可以不设置解析，直接在my.cnf文件中使用IP地址即可。
 
 |   系统   |   主机名   |      IP      |  MySQL版本   |
 | :------: | :--------: | :----------: | :----------: |
