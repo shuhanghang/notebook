@@ -6,7 +6,7 @@ MGR(MySQL Group Replication)是MySQL官方在MySQL  5.7.17版本中以插件形�
 
 ### 1.1 MySQL组复制协议
 
-<img src="https://s1.ax1x.com/2020/04/08/GRNulj.png" alt="Replication Protocol" style="zoom: 33%;" />
+<img src="C:\Users\shuhang\Desktop\GRNulj.png" alt="Replication Protocol" style="zoom: 33%;" />
 
 这3个节点互相通信，每当有读写事件发生，都会向其他节点广播该事件，经过冲突检测后写入到binglog日志然后提交。
 
@@ -37,11 +37,11 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 实验前请在hosts文件中设置好解析，或者局域网内搭建DNS服务器（推荐docker搭建[dnsmasq](https://hub.docker.com/r/jpillora/dnsmasq)）。当然也可以不设置解析，直接在my.cnf文件中使用IP地址即可。
 
-|   系统   |   主机名   |      IP      |  MySQL版本   |
-| :------: | :--------: | :----------: | :----------: |
-| CentOS 7 | d1.mgr.com | 172.16.10.59 | mysql 8.0.19 |
-| CentOS 7 | d2.mgr.com | 172.16.10.58 | mysql 8.0.19 |
-| CentOS 7 | d3.mgr.com | 172.16.10.57 | mysql 8.0.19 |
+|   系统   | 默认角色 |   主机名   |      IP      |  MySQL版本   |
+| :------: | :------: | :--------: | :----------: | :----------: |
+| CentOS 7 |  Master  | d1.mgr.com | 172.16.10.59 | mysql 8.0.19 |
+| CentOS 7 |  Node1   | d2.mgr.com | 172.16.10.58 | mysql 8.0.19 |
+| CentOS 7 |  Node2   | d3.mgr.com | 172.16.10.57 | mysql 8.0.19 |
 
 
 
@@ -51,7 +51,7 @@ MySQL的组复制可以配置为**单主模型**和**多主模型**两种工作�
 
 连接donor（加组连接对象，由种子节点提供）的通道凭据（**channel credentials**）
 
-```mysql
+```shell
 mysql> create user repl@'%' identified by 'P@ssword1!';
 mysql> grant replication slave on *.* to repl@'%';
 ```
@@ -70,7 +70,7 @@ master_info_repository=TABLE       # 必须，记录加入master服务器信息�
 relay_log_info_repository=TABLE    # 必须，记录节点中继日志的位置到mysql.slave_relay_log_info
 log_slave_updates=ON               # 必须，更新节点中继日志
 sync_binlog=1                      # 建议，事务同步到binlog日志
-group_replication_recovery_get_public_key=ON      # 必须，未使用SSL加密
+group_replication_recovery_get_public_key=ON      # 授权使用caching_sha2_password插件时启用，8.0版本默认使用此插件
 
 transaction_write_set_extraction=XXHASH64         # 必须，事务写入算法
 loose-group_replication_group_name="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa" #必须，或使用uuidgen命令生成
@@ -88,13 +88,13 @@ loose-group_replication_ip_whitelist="172.16.10.0/24"	#建议，加组白名单
 
 #### 2.2.3 配置加组通道
 
-```mysql
+```shell
 mysql> change master to master_user='repl',master_password='P@ssword1!' for channel 'group_replication_recovery';
 ```
 
 #### 2.2.4 安装插件并启用组复制
 
-```mysql
+```shell
 mysql> install plugin group_replication soname 'group_replication.so';
 mysql> reset master;
 mysql> reset slave;
@@ -113,7 +113,7 @@ mysql> set @@global.group_replication_bootstrap_group=OFF;
 
 #### 2.2.5 查看组复制成员情况
 
-```mysql
+```shell
 mysql> select * from performance_schema.replication_group_members;
 ```
 
@@ -178,7 +178,7 @@ mysql> start group_replication;
 
 #### 2.3.5 查看组复制成员情况
 
-```mysql
+```shell
 mysql> select * from performance_schema.replication_group_members;
 ```
 
@@ -231,7 +231,7 @@ mysql> change master to master_user='repl',master_password='P@ssword1!' for chan
 
 #### 2.4.4 安装插件并加入到复制组
 
-```mysql
+```shell
 mysql> install plugin group_replication soname 'group_replication.so';
 mysql> reset master;
 mysql> reset slave;
@@ -241,7 +241,7 @@ mysql> start group_replication;
 
 #### 2.4.5 查看组复制成员情况
 
-```mysql
+```shell
 mysql> select * from performance_schema.replication_group_members;
 ```
 
