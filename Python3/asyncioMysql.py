@@ -29,8 +29,8 @@ def init_logger():
     # 定义处理程序,并添加到记录器
     # logger_hander = logging.handlers.RotatingFileHandler(
     #     filename="python_mysql.log", maxBytes=20*1024, backupCount=10)
-
     logger_hander = logging.StreamHandler()
+    
     logger.addHandler(logger_hander)
 
     # 格式化程序，添加到处理程序
