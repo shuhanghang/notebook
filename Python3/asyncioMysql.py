@@ -34,7 +34,7 @@ def init_logger():
     logger.addHandler(logger_hander)
 
     # 格式化程序，添加到处理程序
-    formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
+    formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
     logger_hander.setFormatter(formatter)
 
 
