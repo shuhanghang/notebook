@@ -124,7 +124,7 @@ AD DS 服务涉及到的固定[端口](https://docs.microsoft.com/en-us/previous
 
 #### 2. 关闭其他非相关服务规则，关键端口IP限制
 
-135、389、445、636、3389端口对远程网段为192.168.66.0/24 和 192.168.88.0/24 放通
+135、389、445、636、3389端口对指定网段放通
 
 
 
@@ -213,7 +213,7 @@ filter {
 
 # Output to elasticsearch
 output {
-  if [winlog][channel] == "Security" and ([winlog][event_id] == 4771 or [winlog][event_id] == 4723 ) and "192.168.66" not in [user_ip] {
+  if [winlog][channel] == "Security" and ([winlog][event_id] == 4771 or [winlog][event_id] == 4723 ) and "192.168.10" not in [user_ip] {
   elasticsearch {
     hosts => ["http://192.168.20.10:9200"]
     index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
