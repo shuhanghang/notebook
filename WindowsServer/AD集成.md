@@ -67,7 +67,7 @@ Gitlab账号与AD账号共用: 集成AD后，只需保证 **Username、电子邮
 ## 二. JumpServer LDAP
 
 1. 后台LDAP设置
->    `LDAP地址`          `ldap://192.168.10.10:389`
+    `LDAP地址`          `ldap://192.168.10.10:389`
 
     `绑定DN`             `cn=admin,cn=Users,dc=test,dc=com`
     
