@@ -67,8 +67,7 @@ Gitlab账号与AD账号共用: 集成AD后，只需保证 **Username、电子邮
 ## 二. JumpServer LDAP
 
 1. 后台LDAP设置
-
-   `LDAP地址`          `ldap://192.168.10.10:389`
+>    `LDAP地址`          `ldap://192.168.10.10:389`
     `绑定DN`             `cn=admin,cn=Users,dc=test,dc=com`
     `用户OU`             `ou=jumpserver,dc=test,dc=com`
     `用户过滤器`       `(sAMAccountName=%(user)s)`
@@ -214,6 +213,6 @@ AUTH_LDAP_USER_LOGIN_ONLY_IN_USERS: True
 
 【2】[General LDAP Setup](https://docs.gitlab.com/ee/administration/auth/ldap/index.html#adjusting-ldap-user-sync-schedule-starter-only)
 
-【3】 [nginx-auth-ldap](https://github.com/kvspb/nginx-auth-ldap)
+【3】[nginx-auth-ldap](https://github.com/kvspb/nginx-auth-ldap)
 
 【4】[LDAP 认证](https://docs.jumpserver.org/zh/master/admin-guide/authentication/ldap/)
