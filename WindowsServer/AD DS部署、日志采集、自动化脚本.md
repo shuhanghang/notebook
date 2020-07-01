@@ -351,9 +351,9 @@ i18n.locale: "zh-CN"
    from ldap3 import Server, Connection, ALL, MODIFY_REPLACE
    
    ELASTIC_PORT = 9200
-   ELASTIC_IP = "192.168.66.111"
+   ELASTIC_IP = "192.168.20.10"
    INDEX_NAME = "winlogbeat*"
-   DC_SERVER = "192.168.66.6"
+   DC_SERVER = "192.168.10.10"
    AD_ADMIN_USER = r"test\PythonScript"
    AD_ADMIN_PASS = "12345678"
    logger = None
