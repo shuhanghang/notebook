@@ -213,7 +213,7 @@ filter {
 
 # Output to elasticsearch
 output {
-  if [winlog][channel] == "Security" and ([winlog][event_id] == 4771 or [winlog][event_id] == 4723 ) and "192.168.10" not in [user_ip] {
+  if [winlog][channel] == "Security" and ([winlog][event_id] == 4771 or [winlog][event_id] == 4723 ) and "192.168.20" not in [user_ip] {
   elasticsearch {
     hosts => ["http://192.168.20.10:9200"]
     index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
