@@ -68,10 +68,15 @@ Gitlab账号与AD账号共用: 集成AD后，只需保证 **Username、电子邮
 
 1. 后台LDAP设置
 >    `LDAP地址`          `ldap://192.168.10.10:389`
+
     `绑定DN`             `cn=admin,cn=Users,dc=test,dc=com`
+    
     `用户OU`             `ou=jumpserver,dc=test,dc=com`
+    
     `用户过滤器`       `(sAMAccountName=%(user)s)`
+    
     `LADP属性映射`  `{"username": "sAMAccountName", "name": "sn", "email": "mail"}`
+    
     `启动LDAP认证`  ☑️
 
 2. 修改配置文件
