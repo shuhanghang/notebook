@@ -187,7 +187,7 @@ input {
 filter {
     if [winlog][channel] == "Security" and [winlog][event_id] == 4771  and [winlog][event_data][IpAddress] == "::1" {
         mutate {
-	    add_field => {"user_ip" => "%{[host][ip]}"}
+            add_field => {"user_ip" => "%{[host][ip]}"}
   }
  }
 }
@@ -197,7 +197,7 @@ filter {
 filter {
     if [winlog][channel] == "Security" and [winlog][event_id] == 4768 and [winlog][event_data][IpAddress] == "::1" {
         mutate {
-	    add_field  => {"user_ip" => "%{[host][ip]}"}
+             add_field  => {"user_ip" => "%{[host][ip]}"}
   }
  }
 }
