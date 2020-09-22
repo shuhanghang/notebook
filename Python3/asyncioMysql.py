@@ -13,13 +13,9 @@ import traceback
 import aiomysql
 import pymysql
 
-logger = None
-
-
 # 日志配置：记录器、处理程序、过滤器和格式化程序
 
-def init_logger():
-    global logger
+def create_log():
 
     # 创建记录器
     logger = logging.getLogger('python_mysql')
@@ -36,8 +32,9 @@ def init_logger():
     # 格式化程序，添加到处理程序
     formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
     logger_hander.setFormatter(formatter)
-
-
+    
+    return logger
+    
 # 自定义数据库类
 class Pymariadb():
     def __init__(self, host, port, db, user, passwd):
@@ -127,7 +124,7 @@ async def main(row):
 
 
 if __name__ == "__main__":
-    init_logger()
+    logger = create_log()
     start = time.time()
 
     # 定义写入和读取mysql数据的次数
